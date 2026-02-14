@@ -17,3 +17,7 @@ function basePath($path)
 function controller($path){
     return "HTTP/controllers/$path.php";
 }
+
+function view($path){
+    return require basePath("view/{$path}.view.php"); 
+}

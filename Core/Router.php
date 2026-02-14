@@ -2,8 +2,6 @@
 
 namespace Core;
 
-use Core\Functions;
-
 class Router
 {
     public $routes = [];
@@ -12,7 +10,7 @@ class Router
     {
         $this->routes[] = [
             "route" => $route,
-            "contoller" => $controller,
+            "contoller" => controller($controller),
             "method" => $method
         ];
     }
@@ -42,9 +40,12 @@ class Router
         $this->add($route, $controller, "PATCH");
     }
 
-    public function route($uri){
-        foreach($this->routes as $route){
-            if($uri === $route["route"]){
+    public function route()
+    {
+        $uri = $_SERVER["REQUEST_URI"];
+        $method = $_SERVER["REQUEST_METHOD"];
+        foreach ($this->routes as $route) {
+            if ($uri === $route["route"] && $method === $route["method"]) {
                 return require basePath($route["contoller"]);
             }
         }

@@ -18,6 +18,7 @@ function controller($path){
     return "HTTP/controllers/$path.php";
 }
 
-function view($path){
+function view($path,$attributes=[]){
+    extract($attributes);
     return require basePath("view/{$path}.view.php"); 
 }

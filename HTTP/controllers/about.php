@@ -1,3 +1,3 @@
 <?php 
 
-echo "Hello world About";
+echo "About Controller";

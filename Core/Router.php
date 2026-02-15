@@ -49,5 +49,7 @@ class Router
                 return require basePath($route["contoller"]);
             }
         }
+
+        view("404");
     }
 }

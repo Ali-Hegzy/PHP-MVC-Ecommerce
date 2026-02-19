@@ -2,7 +2,7 @@
 
 use Core\Router;
 
-$router = new Router;
+$router = classLink(Router::class);
 
 $router->GET("/","index");
 $router->GET("/about","about");

@@ -1,8 +1,9 @@
 <?php
 
 use Core\Database;
-$config = (require basePath("configs.php"))["database"];
 
-$db = new Database($config);
+$db = classLink(Database::class);
 
-dumbDie($db->query("SELECT * FROM `users`")->fetch());
+$prods = $db->query("SELECT * FROM `users`")->fetch();
+
+dumbDie($prods);

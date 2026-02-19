@@ -9,11 +9,13 @@ class Database
     public $connect;
     public $statment;
 
-    public function __construct($config, $user = "root", $password = "")
+    public function __construct($attributes)
     {
+        $config = (require basePath("configs.php"))["database"];
+
         $dsn = "mysql:" . http_build_query($config, "", ";");
 
-        $this->connect = new PDO($dsn, $user, $password, [
+        $this->connect = new PDO($dsn, $attributes["user"] ?? "root", $attributes["password"] ?? "", [
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
         ]);
     }

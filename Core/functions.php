@@ -30,3 +30,9 @@ function classLink($class, $attributes = NULL)
 {
     return new $class($attributes);
 }
+
+function redirect($path)
+{
+    header("location: $path");
+    exit();
+}

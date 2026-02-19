@@ -42,7 +42,7 @@ class Router
 
     public function route()
     {
-        $uri = $_SERVER["REQUEST_URI"];
+        $uri = parse_url($_SERVER["REQUEST_URI"])["path"];
         $method = $_SERVER["REQUEST_METHOD"];
         foreach ($this->routes as $route) {
             if ($uri === $route["route"] && $method === $route["method"]) {

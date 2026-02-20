@@ -1,35 +1,38 @@
 <?php
 
 use Core\Database;
+use Core\Validation;
 
 $errors = [];
 $email = $_POST["email"];
 $password = $_POST["password"];
 $userName = $_POST["userName"];
 
-if(empty($email) ||  filter_var($email,FILTER_VALIDATE_EMAIL)){
-    $errors["email"] = "Email form must be vaild";
+if (! Validation::email($email)) {
+    $errors["email"] = "Email field must be vaild";
 }
 
-if(empty($password) || $password < 8){
-    $errors["password"] = "password form must be vaild and more than 8 characters";
+if (! Validation::string($password, 8)) {
+    $errors["password"] = "password field must be vaild and more than 8 characters";
 }
 
-if(empty($userName)){
-    $errors["userName"] = "Fill the user name filed";
+if (! Validation::string($userName)) {
+    $errors["userName"] = "Fill the user name field";
 }
 
-if(! empty($errors)){
-    view("register/create",[
+if (! empty($errors)) {
+    view("register/create", [
         "errors" => $errors
     ]);
+    die();
 }
 
 $db = classLink(Database::class);
 
-$db->Query("INSERT INTO `users` (`email`,`password`) VALUES (:email,:password)",[
+$db->Query("INSERT INTO `users` (`email`,`password`,`userName`) VALUES (:email,:password,:userName)", [
     "email" => $email,
-    "password" => $password
+    "password" => $password,
+    "userName" => $userName
 ]);
 
 redirect("/");

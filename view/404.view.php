@@ -6,6 +6,8 @@
     <title>Document</title>
 </head>
 <body>
+    <?php require basePath("view/partials/nav.php"); ?>
+
     Page Not found 404
 </body>
 </html>

@@ -1,3 +1,3 @@
 <?php 
 
-echo "About Controller";
+view("about");

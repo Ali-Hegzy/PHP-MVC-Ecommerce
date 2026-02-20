@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 const BASE_PATH = __DIR__ . "/../";
 
 require BASE_PATH . "Core/functions.php";
@@ -12,3 +14,5 @@ spl_autoload_register(function($class){
 require basePath("routes.php");
 
 $router->route();
+
+$_SESSION["_flash"] = [];

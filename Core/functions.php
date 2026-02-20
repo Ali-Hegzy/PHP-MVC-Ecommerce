@@ -31,8 +31,9 @@ function classLink($class, $attributes = NULL)
     return new $class($attributes);
 }
 
-function redirect($path)
+function redirect($path,$attributes = [])
 {
+    $_SESSION["_flash"] = $attributes;
     header("location: $path");
     exit();
 }

@@ -8,18 +8,20 @@
 </head>
 
 <body>
+    <?php require basePath("view/partials/nav.php"); ?>
+
     <form action="/signin" method="POST">
         <label for="userName">User Name</label>
-        <input type="userName" name="userName" id="userName" value="<?= $_POST["userName"] ?? "" ?>"/>
-        <p> <?= $errors["userName"] ?? "" ?> </p>
+        <input type="userName" name="userName" id="userName" value=""/> <!-- Make the old data appears -->
+        <p> <?= $_SESSION["_flash"]["userName"] ?? "" ?> </p>
         <br>
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="<?= $_POST["email"] ?? "" ?>"/>
-        <p> <?= $errors["email"] ?? "" ?> </p>
+        <input type="email" name="email" id="email" value=""/> <!-- Make the old data appears -->
+        <p> <?= $_SESSION["_flash"]["email"] ?? "" ?> </p>
         <br>
         <label for="password">Password</label>
         <input type="password" name="password" id="password"/>
-        <p> <?= $errors["password"] ?? "" ?> </p>
+        <p> <?= $_SESSION["_flash"]["password"] ?? "" ?> </p>
         <br>
         <button>Submit</button>
     </form>

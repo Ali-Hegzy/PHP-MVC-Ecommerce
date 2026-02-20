@@ -13,7 +13,7 @@ if (! Validation::email($email)) {
 }
 
 if (! Validation::string($password, 8)) {
-    $errors["password"] = "password field must be vaild and more than 8 characters";
+    $errors["password"] = "password field must be more than 8 characters";
 }
 
 if (! Validation::string($userName)) {
@@ -21,15 +21,22 @@ if (! Validation::string($userName)) {
 }
 
 if (! empty($errors)) {
-    view("register/create", [
-        "errors" => $errors
-    ]);
-    die();
+    redirect("/register",$errors);
 }
 
 $db = classLink(Database::class);
 
-$db->Query("INSERT INTO `users` (`email`,`password`,`userName`) VALUES (:email,:password,:userName)", [
+$res = $db->query("SELECT * FROM `users` WHERE `email` = :email",[
+    "email" => $email
+])->fetch();
+
+if($res){
+    $errors["email"] = "This email is already used";
+
+    redirect("/register",$errors);
+}
+
+$db->query("INSERT INTO `users` (`email`,`password`,`userName`) VALUES (:email,:password,:userName)", [
     "email" => $email,
     "password" => $password,
     "userName" => $userName

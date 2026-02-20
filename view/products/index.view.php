@@ -8,13 +8,7 @@
 </head>
 
 <body>
-    <ul>
-        <?php foreach ($products as $product): ?>
-
-            <li><?= $product["email"] ?></li>
-
-        <?php endforeach; ?>
-    </ul>
+    <?php require basePath("view/partials/nav.php"); ?>
 </body>
 
 </html>

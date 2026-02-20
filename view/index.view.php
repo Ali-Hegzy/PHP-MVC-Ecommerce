@@ -6,6 +6,7 @@
     <title>Document</title>
 </head>
 <body>
-
+    <?php require basePath("view/partials/nav.php"); ?>
+    Index 
 </body>
 </html>

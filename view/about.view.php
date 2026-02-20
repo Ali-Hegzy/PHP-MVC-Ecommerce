@@ -8,9 +8,7 @@
 </head>
 
 <body>
-    <form action="/about" method="post">
-        <button>Send</button>
-    </form>
+    <?php require basePath("view/partials/nav.php"); ?>
 </body>
 
 </html>

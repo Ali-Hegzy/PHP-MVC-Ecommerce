@@ -1,6 +1,7 @@
 <?php
 
 use Core\Database;
+use Core\Sessions;
 
 function dumbDie($value)
 {
@@ -31,9 +32,9 @@ function classLink($class, $attributes = NULL)
     return new $class($attributes);
 }
 
-function redirect($path,$attributes = [])
+function redirect($path, $attributes = [])
 {
-    $_SESSION["_flash"] = $attributes;
+    Sessions::flash($attributes);
     header("location: $path");
     exit();
 }

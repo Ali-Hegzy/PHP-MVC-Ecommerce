@@ -9,6 +9,7 @@
 
 <body>
     <?php require basePath("view/partials/nav.php"); ?>
+    Hello products
 </body>
 
 </html>

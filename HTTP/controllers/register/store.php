@@ -1,6 +1,7 @@
 <?php
 
 use Core\Database;
+use Core\Sessions;
 use Core\Validation;
 
 $errors = [];
@@ -8,6 +9,7 @@ $email = $_POST["email"];
 $password = $_POST["password"];
 $userName = $_POST["userName"];
 
+// Validation the inputs
 if (! Validation::email($email)) {
     $errors["email"] = "Email field must be vaild";
 }
@@ -21,25 +23,25 @@ if (! Validation::string($userName)) {
 }
 
 if (! empty($errors)) {
-    redirect("/register",$errors);
+    redirect("/register", $errors);
 }
 
 $db = classLink(Database::class);
 
-$res = $db->query("SELECT * FROM `users` WHERE `email` = :email",[
-    "email" => $email
-])->fetch();
+$res = $db->isUserExist($email);
 
-if($res){
+if ($res) {
     $errors["email"] = "This email is already used";
-
-    redirect("/register",$errors);
+    redirect("/register", $errors);
 }
 
+// Save the Data into the database
 $db->query("INSERT INTO `users` (`email`,`password`,`userName`) VALUES (:email,:password,:userName)", [
     "email" => $email,
     "password" => $password,
     "userName" => $userName
 ]);
+
+Sessions::login($userName,$email);
 
 redirect("/");

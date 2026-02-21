@@ -1,5 +1,6 @@
 <?php
 
+use Core\Middleware;
 use Core\Router;
 
 $router = classLink(Router::class);

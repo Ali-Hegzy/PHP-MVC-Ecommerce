@@ -27,4 +27,18 @@ class Database
 
         return $this->statment;
     }
+
+    // public function isFound($query,$params) : bool {
+    //     $this->query($query,$params);
+
+    //     return (bool) $this->statment->fetch();
+    // }
+
+    public function isUserExist($email) : bool {
+        $this->query("SELECT * FROM `users` WHERE `email` = :email",[
+            "email" => $email
+        ]);
+
+        return (bool) $this->statment->fetch();
+    }
 }

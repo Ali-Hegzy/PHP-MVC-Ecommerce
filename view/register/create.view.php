@@ -8,19 +8,25 @@
 </head>
 
 <body>
-    <?php require basePath("view/partials/nav.php"); ?>
+    <?php
+
+    use Core\Sessions;
+
+    require basePath("view/partials/nav.php"); 
+    
+    ?>
 
     <form action="/signin" method="POST">
         <label for="userName">User Name</label>
-        <input type="userName" name="userName" id="userName" value=""/> <!-- Make the old data appears -->
+        <input type="userName" name="userName" id="userName" value="<?= Sessions::getOld("userName") ?>" />
         <p> <?= $_SESSION["_flash"]["userName"] ?? "" ?> </p>
         <br>
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" value=""/> <!-- Make the old data appears -->
+        <input type="email" name="email" id="email" value="<?= Sessions::getOld("email") ?>" />
         <p> <?= $_SESSION["_flash"]["email"] ?? "" ?> </p>
         <br>
         <label for="password">Password</label>
-        <input type="password" name="password" id="password"/>
+        <input type="password" name="password" id="password" />
         <p> <?= $_SESSION["_flash"]["password"] ?? "" ?> </p>
         <br>
         <button>Submit</button>

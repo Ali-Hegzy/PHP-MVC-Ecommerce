@@ -23,7 +23,8 @@ if (! Validation::string($userName)) {
 }
 
 if (! empty($errors)) {
-    redirect("/register", $errors);
+    $old = ["email" => $email, "userName" => $userName];
+    redirect("/register", $errors, $old);
 }
 
 $db = classLink(Database::class);
@@ -42,6 +43,6 @@ $db->query("INSERT INTO `users` (`email`,`password`,`userName`) VALUES (:email,:
     "userName" => $userName
 ]);
 
-Sessions::login($userName,$email);
+Sessions::login($userName, $email);
 
 redirect("/");

@@ -4,28 +4,18 @@ use Core\Database;
 use Core\Sessions;
 use Core\Validation;
 
-$errors = [];
 $email = $_POST["email"];
 $password = $_POST["password"];
 $userName = $_POST["userName"];
 
 // Validation the inputs
-if (! Validation::email($email)) {
-    $errors["email"] = "Email field must be vaild";
-}
+Validation::email($email, "Email field must be vaild");
+Validation::string($password, "password field must be more than 7 characters", "password",8);
+Validation::string($userName, "Fill the user name field", "userName");
 
-if (! Validation::string($password, 8)) {
-    $errors["password"] = "password field must be more than 8 characters";
-}
+$old = ["email" => $email, "userName" => $userName];
+Validation::check("/register",$old);
 
-if (! Validation::string($userName)) {
-    $errors["userName"] = "Fill the user name field";
-}
-
-if (! empty($errors)) {
-    $old = ["email" => $email, "userName" => $userName];
-    redirect("/register", $errors, $old);
-}
 
 $db = classLink(Database::class);
 

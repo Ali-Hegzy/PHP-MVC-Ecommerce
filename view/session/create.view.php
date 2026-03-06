@@ -8,11 +8,15 @@
 </head>
 
 <body>
-    <?php require basePath("view/partials/nav.php"); ?>
+    <?php
+
+    use Core\Sessions;
+
+    require basePath("view/partials/nav.php"); ?>
 
     <form action="/store" method="POST">
         <label for="email">Email: </label>
-        <input type="email" name="email" id="email" value="" />
+        <input type="email" name="email" id="email" value="<?= Sessions::getOld("email") ?>" />
         <br>
         <label for="password">Password: </label>
         <input type="password" name="password" id="password" />

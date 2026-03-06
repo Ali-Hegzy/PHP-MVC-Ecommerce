@@ -34,11 +34,30 @@ class Database
     //     return (bool) $this->statment->fetch();
     // }
 
-    public function isUserExist($email) : bool {
-        $this->query("SELECT * FROM `users` WHERE `email` = :email",[
+    public function isUserExist($email): bool
+    {
+        $this->query("SELECT * FROM `users` WHERE `email` = :email", [
             "email" => $email
         ]);
 
         return (bool) $this->statment->fetch();
+    }
+
+    public function getUserName($email)
+    {
+        $this->query("SELECT `userName` FROM `users` WHERE `email` = :email", [
+            "email" => $email
+        ]);
+
+        return $this->statment->fetch()["userName"];
+    }
+
+    public function getPassword($email)
+    {
+        $this->query("SELECT `password` FROM `users` WHERE `email` = :email", [
+            "email" => $email
+        ]);
+
+        return $this->statment->fetch()["password"];
     }
 }

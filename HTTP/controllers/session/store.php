@@ -5,26 +5,24 @@ use Core\Sessions;
 
 $db = classLink(Database::class);
 
-$email = $_POST["email"];
+$email    = $_POST["email"];
 $password = $_POST["password"];
+$old = ["email" => $email];
 
 if(!$db->isUserExist($email)){
     $error["error"] = "Not exist";
-    redirect("/login",$error);
+    redirect("/login",$error,$old);
 }
 
-$passCorrect = $db->query("SELECT `password` FROM `users` WHERE `email` = :email",[
-    "email" => $email
-])->fetch()["password"];
+// I will hash the password in the future إن شاء الله  
+$orignalPass = $db->getPassword($email);
 
 if(!($passCorrect === $password)){
     $error["error"] = "Not exist";
-    redirect("/login",$error);
+    redirect("/login",$error,$old);
 }
 
-$userName = $db->query("SELECT `userName` FROM `users` WHERE `email` = :email",[
-    "email" => $email
-])->fetch()["userName"];
+$userName = $db->getUserName($email);
 
 Sessions::login($userName,$email);
 

@@ -9,13 +9,12 @@ $password = $_POST["password"];
 $userName = $_POST["userName"];
 
 // Validation the inputs
-Validation::email($email, "Email field must be vaild");
+Validation::email($email);
 Validation::string($password, "password field must be more than 7 characters", "password",8);
 Validation::string($userName, "Fill the user name field", "userName");
 
 $old = ["email" => $email, "userName" => $userName];
 Validation::check("/register",$old);
-
 
 $db = classLink(Database::class);
 

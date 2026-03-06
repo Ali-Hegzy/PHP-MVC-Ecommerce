@@ -13,3 +13,5 @@ $router->GET("/products","products/index");
 $router->GET("/register","register/create");
 $router->POST("/signin","register/store");
 
+$router->GET("/login","session/create");
+$router->POST("/store","session/store");

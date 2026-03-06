@@ -6,7 +6,7 @@ class Validation
 {
     public static $errors;
 
-    public static function email($email, $message, $messageKey = "email")
+    public static function email($email, $message = "Enter a valid Email", $messageKey = "email")
     {
         if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
             static::$errors[$messageKey] = $message;

@@ -17,7 +17,7 @@ class Sessions
 
     public static function login($userName, $email)
     {
-        Sessions::add("user", [
+        static::add("user", [
             "email" => $email,
             "userName" => $userName
         ]);

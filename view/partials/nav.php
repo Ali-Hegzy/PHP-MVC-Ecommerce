@@ -18,5 +18,10 @@
         </a>
         Hello <?= $_SESSION["user"]["userName"] ?>
     <?php endif; ?>
+    <?php if (!isset($_SESSION["user"])): ?>
+        <a href="/login">
+            <button>login</button>
+        </a>
+    <?php endif; ?>
 </nav>
 </p>

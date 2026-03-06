@@ -13,10 +13,11 @@
         <button>products</button>
     </a>
     <?php if (isset($_SESSION["user"])): ?>
-        <a href="/logout">
-            <button>Logout</button>
-        </a>
-        Hello <?= $_SESSION["user"]["userName"] ?>
+        <form action="/logout" method="POST">
+            <input type="hidden" name="_method" value="DELETE" />
+            <button>logout</button>
+            Hello <?= $_SESSION["user"]["userName"] ?>
+        </form>
     <?php endif; ?>
     <?php if (!isset($_SESSION["user"])): ?>
         <a href="/login">

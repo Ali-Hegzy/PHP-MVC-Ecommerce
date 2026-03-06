@@ -1,5 +1,7 @@
 <?php
 
+use Core\Sessions;
+
 session_start();
 
 const BASE_PATH = __DIR__ . "/../";
@@ -15,4 +17,4 @@ require basePath("routes.php");
 
 $router->route();
 
-$_SESSION["_flash"] = [];
+Sessions::unflash();

@@ -15,3 +15,4 @@ $router->POST("/signin","register/store");
 
 $router->GET("/login","session/create");
 $router->POST("/store","session/store");
+$router->DELETE("/logout","session/delete");

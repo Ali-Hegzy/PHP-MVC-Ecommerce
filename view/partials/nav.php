@@ -16,7 +16,7 @@
         <form action="/logout" method="POST">
             <input type="hidden" name="_method" value="DELETE" />
             <button>logout</button>
-            Hello <?= $_SESSION["user"]["userName"] ?>
+            Hello <?= htmlspecialchars($_SESSION["user"]["userName"]) ?>
         </form>
     <?php endif; ?>
     <?php if (!isset($_SESSION["user"])): ?>

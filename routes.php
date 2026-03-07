@@ -15,5 +15,5 @@ $router->GET("/login","session/create");
 $router->POST("/store","session/store");
 $router->DELETE("/logout","session/delete");
 
-$router->GET("/products","products/index");
+$router->GET("/products","products/index","auth");
 $router->GET("/add-product","products/create");

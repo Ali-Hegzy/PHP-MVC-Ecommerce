@@ -20,7 +20,7 @@ class Sessions
         unset($_SESSION[$key]);
     }
 
-    public static function login($userName, $email)
+    public static function login($userName, $email, $userId)
     {
         static::add("user", [
             "email" => $email,
@@ -45,7 +45,8 @@ class Sessions
         return $_SESSION["_flash"]["old"][$key] ?? "";
     }
 
-    public static function unflash(){
+    public static function unflash()
+    {
         unset($_SESSION["_flash"]);
     }
 }

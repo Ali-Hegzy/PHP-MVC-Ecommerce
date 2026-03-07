@@ -1,5 +1,5 @@
 <p>
-<nav>
+<nav style="display: flex; gap: 10px; justify-content:center;">
     <a href="/">
         <button>Index</button>
     </a>

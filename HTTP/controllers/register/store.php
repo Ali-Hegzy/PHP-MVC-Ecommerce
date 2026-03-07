@@ -32,6 +32,10 @@ $db->query("INSERT INTO `users` (`email`,`password`,`userName`) VALUES (:email,:
     "userName" => $userName
 ]);
 
-Sessions::login($userName, $email);
+$userId = $db->query("SELECT `id` FROM `users` WHERE `email` = :email",[
+    "email" => $email
+]);
+
+Sessions::login($userName, $email, $userId);
 
 redirect("/");

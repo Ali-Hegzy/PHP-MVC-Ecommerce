@@ -60,4 +60,10 @@ class Database
 
         return $this->statment->fetch()["password"];
     }
+
+    public function getAll($table, $mode = PDO::FETCH_ASSOC)
+    {
+        $rows = $this->query("SELECT * FROM `$table`")->fetchAll($mode);
+        return $rows;
+    }
 }

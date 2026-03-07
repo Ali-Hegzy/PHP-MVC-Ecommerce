@@ -17,13 +17,17 @@ if(!$db->isUserExist($email)){
 // I will hash the password in the future إن شاء الله  
 $orignalPass = $db->getPassword($email);
 
-if(!($passCorrect === $password)){
+if(!($orignalPass === $password)){
     $error["error"] = "Not exist";
     redirect("/login",$error,$old);
 }
 
 $userName = $db->getUserName($email);
 
-Sessions::login($userName,$email);
+$userId = $db->query("SELECT `id` FROM `users` WHERE `email` = :email",[
+    "email" => $email
+]);
+
+Sessions::login($userName, $email, $userId);
 
 redirect("/");

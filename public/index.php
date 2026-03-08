@@ -15,6 +15,14 @@ spl_autoload_register(function($class){
 
 require basePath("routes.php");
 
+$config = "user>userName";
+$str = str_replace(">","[",$config);
+$str = str_replace("=","]",$str) . ']';
+
+extract(["str" => $str]);
+
+// dumbDie();
+
 $router->route();
 
 Sessions::unflash();

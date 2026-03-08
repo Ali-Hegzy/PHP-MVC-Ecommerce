@@ -26,4 +26,7 @@ class Validation
         }
     }
 
+    public static function isAuth() : bool{
+        return (bool) isset($_SESSION["user"]);
+    }
 }

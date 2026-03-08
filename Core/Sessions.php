@@ -15,6 +15,12 @@ class Sessions
         $_SESSION[$key] = $value;
     }
 
+    public static function get($key)
+    {
+        // http_build_query();
+        return $_SESSION ?? "";
+    }
+
     public static function remove($key)
     {
         unset($_SESSION[$key]);

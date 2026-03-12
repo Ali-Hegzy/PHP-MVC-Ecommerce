@@ -2,6 +2,8 @@
 
 use Core\Sessions;
 use Core\Validation;
+
+$session = new Sessions;
 ?>
 <p>
 <nav style="display: flex; gap: 10px; justify-content:center;">
@@ -21,8 +23,7 @@ use Core\Validation;
         <form action="/logout" method="POST">
             <input type="hidden" name="_method" value="DELETE" />
             <button>logout</button>
-            <!-- Hello < htmlspecialchars($_SESSION["user"]["userName"]) ?> -->
-            Hello <?= htmlspecialchars(Sessions::get("user")["userName"]) ?>
+            Hello <?= $session->get(["user", "userName"]) ?>
         </form>
     <?php endif; ?>
     <?php if (!Validation::isAuth()): ?>

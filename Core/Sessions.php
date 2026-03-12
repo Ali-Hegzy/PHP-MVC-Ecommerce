@@ -15,10 +15,17 @@ class Sessions
         $_SESSION[$key] = $value;
     }
 
-    public static function get($key)
+    public function get($keys)
     {
-        // http_build_query();
-        return $_SESSION ?? "";
+        $arr = [];
+
+        for ($i = 0; $i < sizeof($keys); $i++) {
+            ($i === 0) ?
+                $arr = $_SESSION[$keys[$i]] :
+                $arr = $arr[$keys[$i]];
+        }
+
+        return $arr;
     }
 
     public static function remove($key)

@@ -29,7 +29,7 @@ $session = new Sessions;
         <form action="/logout" method="POST">
             <input type="hidden" name="_method" value="DELETE" />
             <button>logout</button>
-            Hello <?= $session->get(["user", "userName"]) ?>
+            Hello <?= htmlspecialchars($session->get(["user", "userName"])) ?>
         </form>
     <?php endif; ?>
     <!-- ==== -->

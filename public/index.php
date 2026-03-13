@@ -1,5 +1,6 @@
 <?php
 
+use Core\Middleware\Middleware;
 use Core\Sessions;
 
 session_start();
@@ -15,6 +16,7 @@ spl_autoload_register(function($class){
 
 require basePath("routes.php");
 
+Middleware::log();
 $router->route();
 
 Sessions::unflash();

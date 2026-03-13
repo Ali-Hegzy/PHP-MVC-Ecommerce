@@ -3,6 +3,7 @@
 namespace Core;
 
 use Core\Middleware\Middleware;
+use Core\Response;
 
 class Router
 {
@@ -62,16 +63,12 @@ class Router
 
                 $middleware = $route["middleware"];
 
-                if (Middleware::resolve($middleware)) {
-                    return require basePath($route["contoller"]);
-                }
-
-                http_response_code(403);
-                return view("403");
+                return (Middleware::resolve($middleware)) ?
+                    require basePath($route["contoller"]) :
+                    Response::forbidden();
             }
         }
 
-        http_response_code(404);
-        view("404");
+        Response::notFound();
     }
 }

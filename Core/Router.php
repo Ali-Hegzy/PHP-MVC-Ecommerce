@@ -8,39 +8,46 @@ class Router
 {
     public $routes = [];
 
-    protected function add($route, $controller, $method, $middleware)
+    protected function add($route, $controller, $method)
     {
         $this->routes[] = [
             "route" => $route,
             "contoller" => controller($controller),
             "method" => $method,
-            "middleware" => $middleware
+            "middleware" => NULL
         ];
+
+        return $this;
     }
 
-    public function GET($route, $controller, $middleware = NULL)
+    public function GET($route, $controller)
     {
-        $this->add($route, $controller, "GET", $middleware);
+        return $this->add($route, $controller, "GET");
     }
 
-    public function POST($route, $controller, $middleware = NULL)
+    public function POST($route, $controller)
     {
-        $this->add($route, $controller, "POST", $middleware);
+        return $this->add($route, $controller, "POST");
     }
 
-    public function DELETE($route, $controller, $middleware = NULL)
+    public function DELETE($route, $controller)
     {
-        $this->add($route, $controller, "DELETE", $middleware);
+        return $this->add($route, $controller, "DELETE");
     }
 
-    public function PUT($route, $controller, $middleware = NULL)
+    public function PUT($route, $controller)
     {
-        $this->add($route, $controller, "PUT", $middleware);
+        return $this->add($route, $controller, "PUT");
     }
 
-    public function PATCH($route, $controller, $middleware = NULL)
+    public function PATCH($route, $controller)
     {
-        $this->add($route, $controller, "PATCH", $middleware);
+        return $this->add($route, $controller, "PATCH");
+    }
+
+    public function only($key)
+    {
+        $this->routes[array_key_last($this->routes)]["middleware"] = $key;
     }
 
     public function route()

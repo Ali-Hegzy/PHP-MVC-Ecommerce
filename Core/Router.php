@@ -62,12 +62,16 @@ class Router
 
                 $middleware = $route["middleware"];
 
-                return (Middleware::resolve($middleware)) ?
-                    require basePath($route["contoller"]) :
-                    view(403);
+                if (Middleware::resolve($middleware)) {
+                    return require basePath($route["contoller"]);
+                }
+
+                http_response_code(403);
+                return view("403");
             }
         }
 
+        http_response_code(404);
         view("404");
     }
 }

@@ -16,7 +16,7 @@ spl_autoload_register(function($class){
 
 require basePath("routes.php");
 
-Middleware::log();
 $router->route();
+Middleware::log();
 
 Sessions::unflash();

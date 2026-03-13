@@ -27,19 +27,20 @@ class Middleware
 
     public static function log()
     {
-
         $file = fopen(basePath("logs.txt"),"a");
+
+        $date = date("Y-m-d_D h:i:s");
         $ip = $_SERVER["REMOTE_ADDR"];
-        $deviceInfo = $_SERVER["HTTP_USER_AGENT"];
-        $browser = $_SERVER["HTTP_SEC_CH_UA"];
-        $route = $_SERVER["REQUEST_URI"] ;
+        $route = $_SERVER["REQUEST_URI"];
+        $responseCode = http_response_code();
+        $method = $_POST["_method"] ?? $_SERVER["REQUEST_METHOD"];
 
         if($route === "/favicon.ico"){
             fclose($file);
             return;
         }
 
-        fwrite($file,"Logs: {$ip} || {$deviceInfo} || {$browser} || {$route}\n");
+        fwrite($file,"[{$date}] - INFO: [IP: {$ip}] [Route: {$route}] [{$responseCode} {$method}]\n");
         fclose($file);
     }
 }

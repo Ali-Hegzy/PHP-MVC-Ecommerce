@@ -15,7 +15,7 @@ class Sessions
         $_SESSION[$key] = $value;
     }
 
-    public function get($keys)
+    public static function get($keys)
     {
         $arr = [];
 

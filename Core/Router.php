@@ -13,7 +13,7 @@ class Router
     {
         $this->routes[] = [
             "route" => $route,
-            "contoller" => controller($controller),
+            "controller" => controller($controller),
             "method" => $method,
             "middleware" => NULL
         ];
@@ -53,22 +53,14 @@ class Router
         return $this;
     }
 
-    public function route()
+    public function route($uri, $method)
     {
-        $uri = parse_url($_SERVER["REQUEST_URI"])["path"];
-        $method = $_POST["_method"] ?? $_SERVER["REQUEST_METHOD"];
-
         foreach ($this->routes as $route) {
             if ($uri === $route["route"] && $method === $route["method"]) {
-
-                $middleware = $route["middleware"];
-
-                return (Middleware::resolve($middleware)) ?
-                    require basePath($route["contoller"]) :
-                    Response::forbidden();
+                return $route;
             }
         }
 
-        Response::notFound();
+        return false;
     }
 }

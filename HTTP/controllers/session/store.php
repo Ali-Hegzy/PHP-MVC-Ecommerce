@@ -1,6 +1,7 @@
 <?php
 
 use Core\Database;
+use Core\Logger;
 use Core\Sessions;
 
 $db = classLink(Database::class);
@@ -10,6 +11,7 @@ $password = $_POST["password"];
 $old = ["email" => $email];
 
 if(!$db->isUserExist($email)){
+    Logger::warning("Wrong email");
     $error["error"] = "Not exist";
     redirect("/login",$error,$old);
 }
@@ -18,6 +20,7 @@ if(!$db->isUserExist($email)){
 $orignalPass = $db->getPassword($email);
 
 if(!($orignalPass === $password)){
+    Logger::warning("Wrong password");
     $error["error"] = "Not exist";
     redirect("/login",$error,$old);
 }

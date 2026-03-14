@@ -2,7 +2,6 @@
 
 namespace Core;
 
-use Exception;
 use PDO;
 
 class Database
@@ -16,16 +15,9 @@ class Database
 
         $dsn = "mysql:" . http_build_query($config, "", ";");
 
-        try{
-            $this->connect = new PDO($dsn, $attributes["user"] ?? "rot", $attributes["password"] ?? "", [
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-            ]);
-        }catch(Exception $e){
-            Logger::critical("Failed to connect to DB");
-            die();
-        }
-
-        Logger::debug("Connect to DB successfully");
+        $this->connect = new PDO($dsn, $attributes["user"] ?? "root", $attributes["password"] ?? "", [
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        ]);
     }
 
     public function query($query, $params = [])

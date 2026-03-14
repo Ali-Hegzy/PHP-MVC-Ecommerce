@@ -40,15 +40,12 @@ class Sessions
             "userName" => $userName
         ]);
         session_regenerate_id(true);
-        Logger::info("$email has been logged in");
     }
 
     public static function logout()
     {
-        $email = static::get(["user","email"]);
         static::remove("user");
         session_regenerate_id(true);
-        Logger::info("\"$email\" has been logged out");
     }
 
     public static function old($attributes = [])

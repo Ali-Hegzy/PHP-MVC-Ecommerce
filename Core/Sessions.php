@@ -5,17 +5,17 @@ namespace Core;
 class Sessions
 {
 
-    public static function flash($attributes = [])
+    public static function flash($attributes = []) : void
     {
         $_SESSION["_flash"] = $attributes;
     }
 
-    public static function add($key, $value)
+    public static function add($key, $value) : void
     {
         $_SESSION[$key] = $value;
     }
 
-    public static function get($keys)
+    public static function get(array $keys)
     {
         $arr = [];
 
@@ -28,12 +28,12 @@ class Sessions
         return $arr;
     }
 
-    public static function remove($key)
+    public static function remove($key) : void
     {
         unset($_SESSION[$key]);
     }
 
-    public static function login($userName, $email, $userId)
+    public static function login($userName, $email, $userId) : void
     {
         static::add("user", [
             "email" => $email,
@@ -42,13 +42,13 @@ class Sessions
         session_regenerate_id(true);
     }
 
-    public static function logout()
+    public static function logout() : void
     {
         static::remove("user");
         session_regenerate_id(true);
     }
 
-    public static function old($attributes = [])
+    public static function old($attributes = []) : void
     {
         $_SESSION["_flash"]["old"] = $attributes;
     }
@@ -58,7 +58,7 @@ class Sessions
         return $_SESSION["_flash"]["old"][$key] ?? "";
     }
 
-    public static function unflash()
+    public static function unflash() : void
     {
         unset($_SESSION["_flash"]);
     }

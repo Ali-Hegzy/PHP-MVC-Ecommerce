@@ -32,5 +32,6 @@ $userId = $db->query("SELECT `id` FROM `users` WHERE `email` = :email",[
 ]);
 
 Sessions::login($userName, $email, $userId);
+Logger::info("\"$email\" has been logged in");
 
 redirect("/");

@@ -7,9 +7,9 @@ use Core\Response;
 
 class Router
 {
-    public $routes = [];
+    public array $routes = [];
 
-    protected function add($route, $controller, $method)
+    protected function add(string $route, string $controller, string  $method): Router
     {
         $this->routes[] = [
             "route" => $route,
@@ -21,39 +21,39 @@ class Router
         return $this;
     }
 
-    public function GET($route, $controller)
+    public function GET(string $route, string  $controller): Router
     {
         return $this->add($route, $controller, "GET");
     }
 
-    public function POST($route, $controller)
+    public function POST(string $route, string  $controller): Router
     {
         return $this->add($route, $controller, "POST");
     }
 
-    public function DELETE($route, $controller)
+    public function DELETE(string $route, string  $controller): Router
     {
         return $this->add($route, $controller, "DELETE");
     }
 
-    public function PUT($route, $controller)
+    public function PUT(string $route, string  $controller): Router
     {
         return $this->add($route, $controller, "PUT");
     }
 
-    public function PATCH($route, $controller)
+    public function PATCH(string $route, string  $controller): Router
     {
         return $this->add($route, $controller, "PATCH");
     }
 
-    public function only($key)
+    public function only(string $key): Router
     {
         $this->routes[array_key_last($this->routes)]["middleware"] = $key;
 
         return $this;
     }
 
-    public function route($uri, $method)
+    public function route(string $uri, string $method)
     {
         foreach ($this->routes as $route) {
             if ($uri === $route["route"] && $method === $route["method"]) {

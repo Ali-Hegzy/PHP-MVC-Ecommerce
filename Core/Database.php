@@ -3,13 +3,14 @@
 namespace Core;
 
 use PDO;
+use PDOStatement;
 
 class Database
 {
-    public $connect;
-    public $statment;
+    public PDO $connect;
+    public PDOStatement $statment;
 
-    public function __construct($attributes)
+    public function __construct(?array $attributes)
     {
         $config = (require basePath("configs.php"))["database"];
 
@@ -20,7 +21,7 @@ class Database
         ]);
     }
 
-    public function query($query, $params = [])
+    public function query(string $query, array $params = []): PDOStatement
     {
         $this->statment = $this->connect->prepare($query);
         $this->statment->execute($params);
@@ -34,7 +35,7 @@ class Database
     //     return (bool) $this->statment->fetch();
     // }
 
-    public function isUserExist($email): bool
+    public function isUserExist(string $email): bool
     {
         $this->query("SELECT * FROM `users` WHERE `email` = :email", [
             "email" => $email
@@ -43,7 +44,7 @@ class Database
         return (bool) $this->statment->fetch();
     }
 
-    public function getUserName($email)
+    public function getUserName(string $email): string
     {
         $this->query("SELECT `userName` FROM `users` WHERE `email` = :email", [
             "email" => $email
@@ -52,7 +53,7 @@ class Database
         return $this->statment->fetch()["userName"];
     }
 
-    public function getPassword($email)
+    public function getPassword(string $email): string
     {
         $this->query("SELECT `password` FROM `users` WHERE `email` = :email", [
             "email" => $email
@@ -61,7 +62,7 @@ class Database
         return $this->statment->fetch()["password"];
     }
 
-    public function getAll($table, $mode = PDO::FETCH_ASSOC)
+    public function getAll(string $table, int $mode = PDO::FETCH_ASSOC): array
     {
         $rows = $this->query("SELECT * FROM `$table`")->fetchAll($mode);
         return $rows;

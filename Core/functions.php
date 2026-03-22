@@ -3,7 +3,7 @@
 use Core\Database;
 use Core\Sessions;
 
-function dumbDie($value)
+function dumbDie($value): void
 {
     echo "<pre>";
     var_dump($value);
@@ -11,17 +11,17 @@ function dumbDie($value)
     die();
 }
 
-function basePath($path)
+function basePath(string $path): string
 {
     return BASE_PATH . $path;
 }
 
-function controller($path)
+function controller(string $path): string
 {
     return "HTTP/controllers/$path.php";
 }
 
-function view($path, $attributes = [])
+function view(string $path, array $attributes = []): string
 {
     extract($attributes);
     return require basePath("view/{$path}.view.php");
@@ -32,7 +32,7 @@ function classLink($class, $attributes = NULL)
     return new $class($attributes);
 }
 
-function redirect($path, $attributes = [],$old = [])
+function redirect(string $path, array $attributes = [], array $old = [])
 {
     Sessions::flash($attributes);
     Sessions::old($old);

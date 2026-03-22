@@ -4,16 +4,16 @@ namespace Core;
 
 class Response
 {
-    private const NOT_FOUND = 404;
-    private const FORBIDDEN = 403;
+    private const int NOT_FOUND = 404;
+    private const int FORBIDDEN = 403;
 
-    public static function notFound()
+    public static function notFound(): void
     {
         http_response_code(static::NOT_FOUND);
         view("404");
     }
 
-    public static function forbidden()
+    public static function forbidden(): void
     {
         http_response_code(static::FORBIDDEN);
         view("403");

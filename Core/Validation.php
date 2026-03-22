@@ -4,29 +4,31 @@ namespace Core;
 
 class Validation
 {
-    public static $errors;
+    public static array $errors;
 
-    public static function email($email, $message = "Enter a valid Email", $messageKey = "email")
+    public static function email(string $email, string $message = "Enter a valid Email", string $messageKey = "email"): void
     {
         if (! filter_var($email, FILTER_VALIDATE_EMAIL)) {
             static::$errors[$messageKey] = $message;
         }
     }
 
-    public static function string($value, $message, $messageKey, $min = 1, $max = INF)
+    public static function string(string $value, string $message, string $messageKey, int $min = 1, float $max = INF): void
     {
         if (! (strlen($value) >= $min && strlen($value) <= $max)) {
             static::$errors[$messageKey] = $message;
         }
     }
 
-    public static function check($path,$old){
-        if(! empty(static::$errors)){
-            redirect($path,static::$errors,$old);
+    public static function check(string $path, array $old): void
+    {
+        if (! empty(static::$errors)) {
+            redirect($path, static::$errors, $old);
         }
     }
 
-    public static function isAuth() : bool{
+    public static function isAuth(): bool
+    {
         return (bool) isset($_SESSION["user"]);
     }
 }

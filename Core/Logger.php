@@ -4,7 +4,7 @@ namespace Core;
 
 class Logger
 {
-    private static function writeInLog($type, $msg)
+    private static function writeInLog(string $type, string $msg): void
     {
         $file = fopen(basePath("logs.txt"), "a");
 
@@ -19,19 +19,19 @@ class Logger
             return;
         }
 
-        ($msg === NULL) ?
+        ($msg === "") ?
             fwrite($file, "[{$date}] - {$type}: [IP: {$ip}] [Route: {$route}] [{$responseCode} {$method}] \n") :
             fwrite($file, "[{$date}] - {$type}: [IP: {$ip}] [Route: {$route}] [{$responseCode} {$method}] [Message: {$msg}]\n");
 
         fclose($file);
     }
 
-    public static function warning($msg = NULL)
+    public static function warning(string $msg = ""): void
     {
         static::writeInLog("WARNING", $msg);
     }
 
-    public static function info($msg = NULL)
+    public static function info(string $msg = ""): void
     {
         static::writeInLog("INFO", $msg);
     }

@@ -1,2 +1,4 @@
 mainPointsToEdit.txt
 logs.txt
+/vendor/
+.phpunit.result.cache

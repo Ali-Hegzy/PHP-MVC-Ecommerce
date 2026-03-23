@@ -1,10 +1,11 @@
 <?php
 
 namespace Core;
-use Core\Sessions;
 
 class Functions
 {
+    private const BASE_PATH = __DIR__ . "/../";
+
     public static function dumbDie($value): void
     {
         echo "<pre>";
@@ -15,7 +16,7 @@ class Functions
 
     public static function basePath(string $path): string
     {
-        return BASE_PATH . $path;
+        return static::BASE_PATH . $path;
     }
 
     public static function controller(string $path): string
@@ -40,5 +41,10 @@ class Functions
         Sessions::old($old);
         header("location: $path");
         exit();
+    }
+
+    public static function getBASE_PATH() : string
+    {
+        return static::BASE_PATH;
     }
 }

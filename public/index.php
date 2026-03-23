@@ -1,5 +1,6 @@
 <?php
 
+use Core\Functions;
 use Core\Logger;
 use Core\Middleware\Middleware;
 use Core\Response;
@@ -16,7 +17,7 @@ spl_autoload_register(function ($class) {
     require BASE_PATH . $class . ".php";
 });
 
-require basePath("routes.php");
+require Functions::basePath("routes.php");
 
 $uri = parse_url($_SERVER["REQUEST_URI"])["path"];
 $method = $_POST["_method"] ?? $_SERVER["REQUEST_METHOD"];
@@ -32,7 +33,7 @@ if (!$route) {
 $middleware = $route["middleware"];
 
 if (Middleware::resolve($middleware)) {
-    require basePath($route["controller"]);
+    require Functions::basePath($route["controller"]);
 } else {
     Response::forbidden();
 }

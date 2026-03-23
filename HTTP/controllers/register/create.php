@@ -1,3 +1,5 @@
 <?php
 
-view("register/create");
+use Core\Functions;
+
+Functions::view("register/create");

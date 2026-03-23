@@ -23,7 +23,11 @@
 
 
 <body>
-    <?php require basePath("view/partials/nav.php"); ?>
+    <?php
+
+    use Core\Functions;
+
+    require Functions::basePath("view/partials/nav.php"); ?>
 
     <a href="/add-product"><button>Add Product</button></a>
 

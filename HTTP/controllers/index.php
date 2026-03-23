@@ -1,4 +1,5 @@
-<?php 
+<?php
 
+use Core\Functions;
 
-view("index");
+Functions::view("index");

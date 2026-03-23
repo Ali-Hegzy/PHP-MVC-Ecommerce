@@ -12,7 +12,7 @@ class Database
 
     public function __construct(?array $attributes)
     {
-        $config = (require basePath("configs.php"))["database"];
+        $config = (require Functions::basePath("configs.php"))["database"];
 
         $dsn = "mysql:" . http_build_query($config, "", ";");
 

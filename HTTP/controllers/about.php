@@ -1,3 +1,5 @@
-<?php 
+<?php
 
-view("about");
+use Core\Functions;
+
+Functions::view("about");

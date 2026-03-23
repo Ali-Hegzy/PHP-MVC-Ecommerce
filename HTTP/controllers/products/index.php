@@ -1,11 +1,12 @@
 <?php
 
 use Core\Database;
+use Core\Functions;
 
-$db = classLink(Database::class);
+$db = Functions::classLink(Database::class);
 
 $products = $db->getAll("products");
 
-view("products/index",[
+Functions::view("products/index",[
     "products" => $products
 ]);

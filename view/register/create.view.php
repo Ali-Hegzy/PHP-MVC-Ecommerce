@@ -10,9 +10,10 @@
 <body>
     <?php
 
-    use Core\Sessions;
+use Core\Functions;
+use Core\Sessions;
 
-    require basePath("view/partials/nav.php"); 
+    require Functions::basePath("view/partials/nav.php"); 
     
     ?>
 

@@ -13,7 +13,7 @@ class Router
     {
         $this->routes[] = [
             "route" => $route,
-            "controller" => controller($controller),
+            "controller" => Functions::controller($controller),
             "method" => $method,
             "middleware" => NULL
         ];

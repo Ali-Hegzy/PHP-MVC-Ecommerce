@@ -1,3 +1,5 @@
-<?php 
+<?php
 
-view("products/create");
+use Core\Functions;
+
+Functions::view("products/create");

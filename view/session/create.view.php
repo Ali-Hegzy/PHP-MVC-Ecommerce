@@ -10,9 +10,10 @@
 <body>
     <?php
 
+    use Core\Functions;
     use Core\Sessions;
 
-    require basePath("view/partials/nav.php"); ?>
+    require Functions::basePath("view/partials/nav.php"); ?>
 
     <form action="/store" method="POST">
         <label for="email">Email: </label>

@@ -1,6 +1,7 @@
 <?php
 
 use Core\Database;
+use Core\Functions;
 use Core\Sessions;
 use Core\Validation;
 
@@ -10,19 +11,19 @@ $userName = $_POST["userName"];
 
 // Validation the inputs
 Validation::email($email);
-Validation::string($password, "password field must be more than 7 characters", "password",8);
+Validation::string($password, "password field must be more than 7 characters", "password", 8);
 Validation::string($userName, "Fill the user name field", "userName");
 
 $old = ["email" => $email, "userName" => $userName];
-Validation::check("/register",$old);
+Validation::check("/register", $old);
 
-$db = classLink(Database::class);
+$db = Functions::classLink(Database::class);
 
 $res = $db->isUserExist($email);
 
 if ($res) {
     $errors["email"] = "This email is already used";
-    redirect("/register", $errors);
+    Functions::redirect("/register", $errors);
 }
 
 // Save the Data into the database
@@ -32,10 +33,10 @@ $db->query("INSERT INTO `users` (`email`,`password`,`userName`) VALUES (:email,:
     "userName" => $userName
 ]);
 
-$userId = $db->query("SELECT `id` FROM `users` WHERE `email` = :email",[
+$userId = $db->query("SELECT `id` FROM `users` WHERE `email` = :email", [
     "email" => $email
 ]);
 
 Sessions::login($userName, $email, $userId);
 
-redirect("/");
+Functions::redirect("/");

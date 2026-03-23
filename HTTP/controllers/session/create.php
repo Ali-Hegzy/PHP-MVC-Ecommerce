@@ -1,3 +1,5 @@
-<?php 
+<?php
 
-view("session/create");
+use Core\Functions;
+
+Functions::view("session/create");

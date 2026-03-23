@@ -23,7 +23,7 @@ class Validation
     public static function check(string $path, array $old): void
     {
         if (! empty(static::$errors)) {
-            redirect($path, static::$errors, $old);
+            Functions::redirect($path, static::$errors, $old);
         }
     }
 

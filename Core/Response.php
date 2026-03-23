@@ -10,12 +10,12 @@ class Response
     public static function notFound(): void
     {
         http_response_code(static::NOT_FOUND);
-        view("404");
+        Functions::view("404");
     }
 
     public static function forbidden(): void
     {
         http_response_code(static::FORBIDDEN);
-        view("403");
+        Functions::view("403");
     }
 }

@@ -6,7 +6,7 @@ class Logger
 {
     private static function writeInLog(string $type, string $msg): void
     {
-        $file = fopen(basePath("logs.txt"), "a");
+        $file = fopen(Functions::basePath("logs.txt"), "a");
 
         $date = date("Y-m-d_D h:i:s");
         $ip = $_SERVER["REMOTE_ADDR"];

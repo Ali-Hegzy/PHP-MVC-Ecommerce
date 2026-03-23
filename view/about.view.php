@@ -8,7 +8,11 @@
 </head>
 
 <body>
-    <?php require basePath("view/partials/nav.php"); ?>
+    <?php
+
+    use Core\Functions;
+
+    require Functions::basePath("view/partials/nav.php"); ?>
     About
 </body>
 

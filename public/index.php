@@ -1,5 +1,7 @@
 <?php
 
+require "../Core/consts.php";
+
 use Core\Functions;
 use Core\Logger;
 use Core\Middleware\Middleware;
@@ -10,7 +12,7 @@ session_start();
 
 spl_autoload_register(function ($class) {
     $class = str_replace("\\", DIRECTORY_SEPARATOR, $class);
-    require Functions::getBASE_PATH() . $class . ".php";
+    require BASE_PATH . $class . ".php"; // temp fix
 });
 
 require Functions::basePath("routes.php");

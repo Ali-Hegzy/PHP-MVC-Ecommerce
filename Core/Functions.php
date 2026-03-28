@@ -2,9 +2,10 @@
 
 namespace Core;
 
+require "consts.php";
+
 class Functions
 {
-    private const BASE_PATH = __DIR__ . "/../";
 
     public static function dumbDie($value): void
     {
@@ -16,7 +17,7 @@ class Functions
 
     public static function basePath(string $path): string
     {
-        return static::BASE_PATH . $path;
+        return BASE_PATH . $path;
     }
 
     public static function controller(string $path): string
@@ -45,6 +46,6 @@ class Functions
 
     public static function getBASE_PATH() : string
     {
-        return static::BASE_PATH;
+        return BASE_PATH;
     }
 }

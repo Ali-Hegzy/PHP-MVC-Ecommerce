@@ -2,11 +2,10 @@
 
 namespace Core;
 
-require "consts.php";
+require_once "consts.php";
 
 class Functions
 {
-
     public static function dumbDie($value): void
     {
         echo "<pre>";
@@ -42,10 +41,5 @@ class Functions
         Sessions::old($old);
         header("location: $path");
         exit();
-    }
-
-    public static function getBASE_PATH() : string
-    {
-        return BASE_PATH;
     }
 }

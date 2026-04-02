@@ -41,6 +41,11 @@ class Validation
 
     public static function file(array $file, array $types = [], string $message, string $messageKey, int $minSize = 1, float $maxSize = INF): bool
     {
+        if($file["error"]){
+            static::$errors[$messageKey] = $message;
+            return false;
+        }
+
         $type = explode("/", $file["type"])[1];
         $size = $file["size"];
         $flag = 0;
@@ -54,13 +59,13 @@ class Validation
         }
 
         if ($flag) {
-            return false;
             static::$errors[$messageKey] = $message;
+            return false;
         }
 
         if ($size < $minSize || $size > $maxSize) {
-            return false;
             static::$errors[$messageKey] = $message;
+            return false;
         }
 
         return true;

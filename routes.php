@@ -5,16 +5,16 @@ use Core\Router;
 
 $router = Functions::classLink(Router::class);
 
-$router->GET("/", "index");
-$router->GET("/about", "about");
+$router->get("/", "index");
+$router->get("/about", "about");
 
-$router->GET("/register", "register/create")->only("guest");
-$router->POST("/signin", "register/store");
+$router->get("/register", "register/create")->only("guest");
+$router->post("/signin", "register/store");
 
-$router->GET("/login", "session/create");
-$router->POST("/store", "session/store");
-$router->DELETE("/logout", "session/delete");
+$router->get("/login", "session/create");
+$router->post("/store", "session/store");
+$router->delete("/logout", "session/delete");
 
-$router->GET("/products", "products/index")->only("auth");
-$router->GET("/add-product", "products/create")->only("auth");
-$router->POST("/store-product", "products/store")->only("auth");
+$router->get("/products", "products/index")->only("auth");
+$router->get("/add-product", "products/create")->only("auth");
+$router->post("/store-product", "products/store")->only("auth");

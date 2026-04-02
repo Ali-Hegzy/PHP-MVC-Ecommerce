@@ -21,27 +21,27 @@ class Router
         return $this;
     }
 
-    public function GET(string $route, string  $controller): Router
+    public function get(string $route, string  $controller): Router
     {
         return $this->add($route, $controller, "GET");
     }
 
-    public function POST(string $route, string  $controller): Router
+    public function post(string $route, string  $controller): Router
     {
         return $this->add($route, $controller, "POST");
     }
 
-    public function DELETE(string $route, string  $controller): Router
+    public function delete(string $route, string  $controller): Router
     {
         return $this->add($route, $controller, "DELETE");
     }
 
-    public function PUT(string $route, string  $controller): Router
+    public function put(string $route, string  $controller): Router
     {
         return $this->add($route, $controller, "PUT");
     }
 
-    public function PATCH(string $route, string  $controller): Router
+    public function patch(string $route, string  $controller): Router
     {
         return $this->add($route, $controller, "PATCH");
     }

@@ -33,11 +33,12 @@ class Sessions
         unset($_SESSION[$key]);
     }
 
-    public static function login(string $userName,string $email, $userId): void
+    public static function login(string $userName,string $email,int $userId): void
     {
         static::add("user", [
             "email" => $email,
-            "userName" => $userName
+            "userName" => $userName,
+            "userId" => $userId
         ]);
         session_regenerate_id(true);
     }

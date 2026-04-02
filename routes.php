@@ -16,4 +16,5 @@ $router->POST("/store", "session/store");
 $router->DELETE("/logout", "session/delete");
 
 $router->GET("/products", "products/index")->only("auth");
-$router->GET("/add-product", "products/create");
+$router->GET("/add-product", "products/create")->only("auth");
+$router->POST("/store-product", "products/store")->only("auth");

@@ -30,7 +30,7 @@ $userName = $db->getUserName($email);
 
 $userId = $db->query("SELECT `id` FROM `users` WHERE `email` = :email", [
     "email" => $email
-]);
+])->fetch()["id"];
 
 Sessions::login($userName, $email, $userId);
 Logger::info("\"$email\" has been logged in");

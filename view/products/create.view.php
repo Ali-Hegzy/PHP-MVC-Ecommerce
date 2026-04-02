@@ -19,21 +19,21 @@
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" value="<?= Sessions::getOld("name") ?>" />
         <br>
-        <p><?= $_SESSION["_flash"]["name"] ?? "" ?></p>
+        <p><?= Sessions::getError("name") ?></p>
 
         <label for="description">Description:</label>
         <textarea id="description" name="description"><?= Sessions::getOld("description") ?></textarea>
         <br>
-        <p><?= $_SESSION["_flash"]["desc"] ?? "" ?></p>
+        <p><?= Sessions::getError("desc") ?></p>
 
         <label for="price">Price:</label>
         <input type="number" min="0" id="price" name="price" value="<?= Sessions::getOld("price") ?>" /> $
         <br>
-        <p><?= $_SESSION["_flash"]["price"] ?? "" ?></p>
+        <p><?= Sessions::getError("price") ?></p>
 
         <label for="image">Upload product image</label>
         <input type="file" id="image" name="image" />
-        <p><?= $_SESSION["_flash"]["image"] ?? "" ?></p>
+        <p><?= Sessions::getError("image") ?></p>
         <br>
 
         <button type="submit">Add Product</button>

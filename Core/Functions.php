@@ -37,7 +37,7 @@ class Functions
 
     public static function redirect(string $path, array $attributes = [], array $old = [])
     {
-        Sessions::flash($attributes);
+        Sessions::addError($attributes);
         Sessions::old($old);
         header("location: $path");
         exit();

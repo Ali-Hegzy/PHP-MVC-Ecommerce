@@ -63,4 +63,20 @@ class Sessions
     {
         unset($_SESSION["_flash"]);
     }
+
+    public static function addError($value) : void
+    {
+        $_SESSION["_flash"]["error"] = $value;
+    }
+
+    public static function getError(string $key): string|array
+    {
+        return $_SESSION["_flash"]["error"][$key] ?? "";
+    }
+
+    public static function getFlash(string $key): string|array
+    {
+        return $_SESSION["_flash"][$key] ?? "";
+    }
+
 }

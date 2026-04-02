@@ -20,15 +20,15 @@ use Core\Sessions;
     <form action="/signin" method="POST">
         <label for="userName">User Name</label>
         <input type="userName" name="userName" id="userName" value="<?= Sessions::getOld("userName") ?>" />
-        <p> <?= $_SESSION["_flash"]["userName"] ?? "" ?> </p>
+        <p> <?= Sessions::getError("userName") ?> </p>
         <br>
         <label for="email">Email</label>
         <input type="email" name="email" id="email" value="<?= Sessions::getOld("email") ?>" />
-        <p> <?= $_SESSION["_flash"]["email"] ?? "" ?> </p>
+        <p> <?= Sessions::getError("email") ?> </p>
         <br>
         <label for="password">Password</label>
         <input type="password" name="password" id="password" />
-        <p> <?= $_SESSION["_flash"]["password"] ?? "" ?> </p>
+        <p> <?= Sessions::getError("password") ?> </p>
         <br>
         <button>Submit</button>
     </form>

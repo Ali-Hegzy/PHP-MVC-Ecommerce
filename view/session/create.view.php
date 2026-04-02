@@ -23,7 +23,7 @@
         <input type="password" name="password" id="password" />
         <br>
 
-        <p><?= $_SESSION["_flash"]["error"] ?? "" ?></p>
+        <p><?= Sessions::getError("error") ?></p>
         <button>Send</button>
     </form>
 </body>

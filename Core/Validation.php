@@ -6,7 +6,8 @@ class Validation
 {
     private static array $errors;
 
-    public static function addError(string $message, string $messageKey): void {
+    public static function addError(string $message, string $messageKey): void
+    {
         static::$errors[$messageKey] = $message;
     }
 

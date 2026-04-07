@@ -24,7 +24,7 @@ class Validation
         }
     }
 
-    public static function check(string $path, array $old): void
+    public static function check(string $path, array $old = []): void
     {
         if (! empty(static::$errors)) {
             Functions::redirect($path, static::$errors, $old);

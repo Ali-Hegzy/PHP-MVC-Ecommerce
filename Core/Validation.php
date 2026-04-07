@@ -4,7 +4,11 @@ namespace Core;
 
 class Validation
 {
-    public static array $errors;
+    private static array $errors;
+
+    public static function addError(string $message, string $messageKey): void {
+        static::$errors[$messageKey] = $message;
+    }
 
     public static function email(string $email, string $message = "Enter a valid Email", string $messageKey = "email"): void
     {
@@ -41,7 +45,7 @@ class Validation
 
     public static function file(array $file, array $types = [], string $message, string $messageKey, int $minSize = 1, float $maxSize = INF): bool
     {
-        if($file["error"]){
+        if ($file["error"]) {
             static::$errors[$messageKey] = $message;
             return false;
         }

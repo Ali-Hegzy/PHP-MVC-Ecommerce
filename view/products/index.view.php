@@ -41,8 +41,8 @@
             <th>Image</th>
         </thead>
         <tbody>
+            <?php foreach ($products as $product): ?>
             <tr>
-                <?php foreach ($products as $product): ?>
                     <td><?= $product["name"] ?></td>
                     <td><?= $product["description"] ?></td>
                     <td><?= $product["price"] ?></td>
@@ -51,8 +51,8 @@
                     <td>
                         <img style="width: 200px;" src="<?= $product["imageSrc"] ?>" loading="lazy" alt="img" />
                     </td>
-                <?php endforeach; ?>
-            </tr>
+                </tr>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </body>

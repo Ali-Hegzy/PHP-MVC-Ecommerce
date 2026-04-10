@@ -35,7 +35,7 @@ class Functions
         return new $class($attributes);
     }
 
-    public static function redirect(string $path, array $attributes, array $error = [], array $old = [])
+    public static function redirect(string $path, array $attributes = [], array $error = [], array $old = [])
     {
         Sessions::flash($attributes);
         Sessions::addError($error);

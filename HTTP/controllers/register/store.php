@@ -23,7 +23,7 @@ $res = $db->isUserExist($email);
 
 if ($res) {
     $errors["email"] = "This email is already used";
-    Functions::redirect("/register", $errors);
+    Functions::redirect("/register", error: $errors);
 }
 
 // Save the Data into the database

@@ -1,5 +1,7 @@
 <?php
 
+use Core\Database;
+use Core\File;
 use Core\Functions;
 use Core\Sessions;
 use Core\Validation;
@@ -31,6 +33,23 @@ $old = [
 ];
 Validation::check("/add-product", $old);
 
-//Store
-if ($store) {
+$targetDir = Functions::basePath("uploads/images/products/" . date("Y/m/"));
+$imageSrc = File::store($targetDir, $image);
+if ($imageSrc === false) {
+    Validation::addError("There is an error in uploding the image", "image");
+    Validation::check("/add-product", $old);
 }
+
+$db = Functions::classLink(Database::class);
+$db->query("INSERT INTO `products` (`userId`, `name`, `description`, `imageSrc`, `price`, `available`) VALUES (:userId, :name, :description, :imageSrc, :price, :available)", [
+    "userId" => $userId,
+    "name" => $productName,
+    "description" => $description,
+    "imageSrc" => $imageSrc,
+    "price" => 10, // temp value
+    "available" => 10 // temp value
+]);
+
+Functions::redirect("/add-product", attributes: [
+    "success" => true
+]);

@@ -15,6 +15,10 @@
 
     require Functions::basePath("view/partials/nav.php"); ?>
 
+    <?php if (Sessions::getFlash("success") === '1'): ?>
+        <p>The file has been uploaded successfully</p>
+    <?php endif; ?>
+
     <form action="store-product" method="POST" enctype="multipart/form-data">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" value="<?= Sessions::getOld("name") ?>" />

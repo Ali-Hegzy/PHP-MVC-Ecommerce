@@ -1,6 +1,6 @@
 <?php
 
-const BASE_PATH = __DIR__ . "/../";
+require "../Core/consts.php";
 
 $imageName = $_GET["img"] ?? "";
 $targetDir = BASE_PATH . "uploads/";

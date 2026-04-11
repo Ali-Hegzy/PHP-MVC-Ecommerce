@@ -49,7 +49,7 @@
                     <td><?= $product["available"] ?></td>
                     <td><?= $product["soldItems"] ?></td>
                     <td>
-                        <img style="width: 200px;" src="<?= $product["imageSrc"] ?>" loading="lazy" alt="img" />
+                        <img src="image.php?img=<?= $product["imageSrc"] ?>" width="200"  loading="lazy" alt="image">
                     </td>
                 </tr>
             <?php endforeach; ?>

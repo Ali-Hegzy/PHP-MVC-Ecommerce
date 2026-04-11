@@ -33,9 +33,10 @@ $old = [
 ];
 Validation::check("/add-product", $old);
 
-$targetDir = Functions::basePath("uploads/images/products/" . date("Y/m/"));
-$imageSrc = File::store($targetDir, $image);
-if ($imageSrc === false) {
+$uploadPath = "images/products/" . date("Y/m/");
+$targetDir = Functions::basePath("uploads/" . $uploadPath);
+$imageSrc = $uploadPath . File::store($targetDir, $image);
+if ($imageSrc === ($uploadPath . false)) {
     Validation::addError("There is an error in uploding the image", "image");
     Validation::check("/add-product", $old);
 }

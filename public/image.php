@@ -2,7 +2,7 @@
 
 const BASE_PATH = __DIR__ . "/../";
 
-$imageName = $_GET["img"];
+$imageName = $_GET["img"] ?? "";
 $targetDir = BASE_PATH . "uploads/";
 $targetPath = $targetDir . $imageName;
 

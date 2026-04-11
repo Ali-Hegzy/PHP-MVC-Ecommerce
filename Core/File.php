@@ -15,7 +15,7 @@ class File
         }
 
         if(move_uploaded_file($file["tmp_name"], $targetFilePath)){
-            return $targetFilePath;
+            return $fileName;
         }
 
         return false;

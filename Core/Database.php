@@ -89,4 +89,13 @@ class Database
 
         return $this->statment->fetch()["password"];
     }
+
+    public function getUser(string $id)
+    {
+        $this->query("SELECT * FROM `users` WHERE `id` = :id",[
+            "id" => $id
+        ]);
+
+        return $this->find();
+    }
 }

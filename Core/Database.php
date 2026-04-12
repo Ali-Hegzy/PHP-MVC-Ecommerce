@@ -83,7 +83,8 @@ class Database
         $result = $this->find();
 
         if (!$result) {
-            return Response::notFound();
+            Response::notFound();
+            die();
         }
 
         return $result;

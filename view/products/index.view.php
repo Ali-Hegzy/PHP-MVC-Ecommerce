@@ -19,6 +19,7 @@
         }
     </style>
 </head>
+
 <body>
     <?php
 
@@ -39,14 +40,16 @@
         </thead>
         <tbody>
             <?php foreach ($products as $product): ?>
-            <tr>
+                <tr>
                     <td><?= $product["name"] ?></td>
                     <td><?= $product["description"] ?></td>
                     <td><?= $product["price"] ?></td>
                     <td><?= $product["available"] ?></td>
                     <td><?= $product["soldItems"] ?></td>
                     <td>
-                        <img src="image.php?img=<?= $product["imageSrc"] ?>" width="200"  loading="lazy" alt="image">
+                        <a href="/product?prod=<?= $product["id"] ?>">
+                            <img src="image.php?img=<?= $product["imageSrc"] ?>" width="200" loading="lazy" alt="image">
+                        </a>
                     </td>
                 </tr>
             <?php endforeach; ?>

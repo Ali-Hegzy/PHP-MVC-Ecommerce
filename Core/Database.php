@@ -21,12 +21,12 @@ class Database
         ]);
     }
 
-    public function query(string $query, array $params = []): PDOStatement
+    public function query(string $query, array $params = []): Database
     {
         $this->statment = $this->connect->prepare($query);
         $this->statment->execute($params);
 
-        return $this->statment;
+        return $this;
     }
 
     // public function isFound($query,$params) : bool {
@@ -64,7 +64,28 @@ class Database
 
     public function getAll(string $table, int $mode = PDO::FETCH_ASSOC): array
     {
-        $rows = $this->query("SELECT * FROM `$table`")->fetchAll($mode);
+        $rows = $this->query("SELECT * FROM `$table`")->findAll($mode);
         return $rows;
+    }
+
+    public function find()
+    {
+        return $this->statment->fetch();
+    }
+
+    public function findAll()
+    {
+        return $this->statment->fetchAll();
+    }
+
+    public function findAbort()
+    {
+        $result = $this->find();
+
+        if (!$result) {
+            return Response::notFound();
+        }
+
+        return $result;
     }
 }

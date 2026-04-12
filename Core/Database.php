@@ -29,6 +29,34 @@ class Database
         return $this;
     }
 
+    public function find()
+    {
+        return $this->statment->fetch();
+    }
+
+    public function findAll()
+    {
+        return $this->statment->fetchAll();
+    }
+
+    public function getAll(string $table, int $mode = PDO::FETCH_ASSOC): array
+    {
+        $rows = $this->query("SELECT * FROM `$table`")->findAll($mode);
+        return $rows;
+    }
+
+    public function findAbort()
+    {
+        $result = $this->find();
+
+        if (!$result) {
+            Response::notFound();
+            die();
+        }
+
+        return $result;
+    }
+
     // public function isFound($query,$params) : bool {
     //     $this->query($query,$params);
 
@@ -60,33 +88,5 @@ class Database
         ]);
 
         return $this->statment->fetch()["password"];
-    }
-
-    public function getAll(string $table, int $mode = PDO::FETCH_ASSOC): array
-    {
-        $rows = $this->query("SELECT * FROM `$table`")->findAll($mode);
-        return $rows;
-    }
-
-    public function find()
-    {
-        return $this->statment->fetch();
-    }
-
-    public function findAll()
-    {
-        return $this->statment->fetchAll();
-    }
-
-    public function findAbort()
-    {
-        $result = $this->find();
-
-        if (!$result) {
-            Response::notFound();
-            die();
-        }
-
-        return $result;
     }
 }

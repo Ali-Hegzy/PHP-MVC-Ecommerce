@@ -64,7 +64,7 @@ class Database
     //     return (bool) $this->statment->fetch();
     // }
 
-    public function isUserExist(): array
+    public function user(): array
     {
         $user = $this->find();
 
@@ -73,6 +73,15 @@ class Database
         }
 
         return $user;
+    }
+
+    public function isUserExist($email): bool
+    {
+        $user = $this->query("SELECT * FROM `users` WHERE `email` = :email",[
+            "email" => $email
+        ])->find();
+
+        return (bool) $user;
     }
 
     public function getWhereEmail(string $email, string $column = '')
@@ -104,18 +113,18 @@ class Database
     public function getUserName(string $email): string
     {
         $this->getWhereEmail($email, "userName");
-        return $this->isUserExist()["userName"];
+        return $this->user()["userName"];
     }
 
     public function getPassword(string $email): string
     {
         $this->getWhereEmail($email, "password");
-        return $this->isUserExist()["password"];
+        return $this->user()["password"];
     }
 
     public function getUser(string $id): array
     {
         $this->getWhereId($id);
-        return $this->isUserExist();
+        return $this->user();
     }
 }

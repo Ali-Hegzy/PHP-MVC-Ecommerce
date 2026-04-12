@@ -19,3 +19,5 @@ $router->get("/products", "products/index")->only("auth");
 $router->get("/add-product", "products/create")->only("auth");
 $router->post("/store-product", "products/store")->only("auth");
 $router->get("/product", "products/show")->only("auth");
+
+$router->get("/profile","profile/index")->only("auth");

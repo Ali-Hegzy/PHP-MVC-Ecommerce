@@ -23,6 +23,11 @@ class Sessions
         return $arr;
     }
 
+    public static function getUserId(): string
+    {
+        return $_SESSION["user"]["userId"];
+    }
+
     public static function remove(string $key): void
     {
         unset($_SESSION[$key]);

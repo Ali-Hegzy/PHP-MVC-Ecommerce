@@ -19,7 +19,7 @@ $productName = $_POST["name"];
 $price = $_POST["price"];
 $description = $_POST["description"];
 $image = $_FILES["image"];
-$userId = Sessions::get(["user", "userId"]);
+$userId = Sessions::getUserId();
 
 Validation::string($productName, "Enter valid product name", "name");
 Validation::number($price, "Enter a valid price for the product", "price");

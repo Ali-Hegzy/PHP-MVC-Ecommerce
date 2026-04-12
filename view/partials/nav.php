@@ -24,6 +24,12 @@ use Core\Validation;
     </a>
     <!-- ==== -->
     <?php if (Validation::isAuth()): ?>
+        <a href="/profile">
+            <button>profile</button>
+        </a>
+    <?php endif; ?>
+    <!-- ==== -->
+    <?php if (Validation::isAuth()): ?>
         <form action="/logout" method="POST">
             <input type="hidden" name="_method" value="DELETE" />
             <button>logout</button>

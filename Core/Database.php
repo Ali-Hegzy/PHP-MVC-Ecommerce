@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use Exception;
 use PDO;
 use PDOStatement;
 
@@ -63,39 +64,58 @@ class Database
     //     return (bool) $this->statment->fetch();
     // }
 
-    public function isUserExist(string $email): bool
+    public function isUserExist(): array
     {
-        $this->query("SELECT * FROM `users` WHERE `email` = :email", [
-            "email" => $email
-        ]);
+        $user = $this->find();
 
-        return (bool) $this->statment->fetch();
+        if (!$user) {
+            throw new Exception("Non existing user");
+        }
+
+        return $user;
+    }
+
+    public function getWhereEmail(string $email, string $column = '')
+    {
+        if ($column === '') {
+            $this->query("SELECT * FROM `users` WHERE `email` = :email", [
+                "email" => $email
+            ]);
+        } else {
+            $this->query("SELECT `$column` FROM `users` WHERE `email` = :email", [
+                "email" => $email
+            ]);
+        }
+    }
+
+    public function getWhereId(string $id, string $column = ''): void
+    {
+        if ($column === '') {
+            $this->query("SELECT * FROM `users` WHERE `id` = :id", [
+                "id" => $id
+            ]);
+        } else {
+            $this->query("SELECT `$column` FROM `users` WHERE `id` = :id", [
+                "id" => $id
+            ]);
+        }
     }
 
     public function getUserName(string $email): string
     {
-        $this->query("SELECT `userName` FROM `users` WHERE `email` = :email", [
-            "email" => $email
-        ]);
-
-        return $this->statment->fetch()["userName"];
+        $this->getWhereEmail($email, "userName");
+        return $this->isUserExist()["userName"];
     }
 
     public function getPassword(string $email): string
     {
-        $this->query("SELECT `password` FROM `users` WHERE `email` = :email", [
-            "email" => $email
-        ]);
-
-        return $this->statment->fetch()["password"];
+        $this->getWhereEmail($email, "password");
+        return $this->isUserExist()["password"];
     }
 
-    public function getUser(string $id)
+    public function getUser(string $id): array
     {
-        $this->query("SELECT * FROM `users` WHERE `id` = :id",[
-            "id" => $id
-        ]);
-
-        return $this->find();
+        $this->getWhereId($id);
+        return $this->isUserExist();
     }
 }

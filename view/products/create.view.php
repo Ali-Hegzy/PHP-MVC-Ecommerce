@@ -31,9 +31,14 @@
         <p><?= Sessions::getError("desc") ?></p>
 
         <label for="price">Price:</label>
-        <input type="number" min="0" id="price" name="price" value="<?= htmlspecialchars(Sessions::getOld("price")) ?>" /> $
+        <input type="number" min="1" id="price" name="price" value="<?= htmlspecialchars(Sessions::getOld("price")) ?>" /> $
         <br>
         <p><?= Sessions::getError("price") ?></p>
+
+        <label for="available">Available items:</label>
+        <input type="number" min="1" id="available" name="available" value="<?= htmlspecialchars(Sessions::getOld("available")) ?>" />
+        <br>
+        <p><?= Sessions::getError("available") ?></p>
 
         <label for="image">Upload product image</label>
         <input type="file" id="image" name="image" />

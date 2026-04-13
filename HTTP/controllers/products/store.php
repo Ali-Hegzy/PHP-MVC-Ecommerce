@@ -18,18 +18,21 @@ if ($_SERVER['CONTENT_LENGTH'] > $validSize * 1024 * 1024) {
 $productName = $_POST["name"];
 $price = $_POST["price"];
 $description = $_POST["description"];
+$available = $_POST["available"];
 $image = $_FILES["image"];
 $userId = Sessions::getUserId();
 
 Validation::string($productName, "Enter valid product name", "name");
 Validation::number($price, "Enter a valid price for the product", "price");
+Validation::number($available, "Enter a valid available items", "available");
 Validation::string($description, "Enter valid product description", "desc");
 $store = Validation::file($image, ["png", "jpeg"], "Enter a valid file", "image", maxSize: (2 * 1024 * 1024));
 
 $old = [
     "name" => $productName,
     "price" => $price,
-    "description" => $description
+    "description" => $description,
+    "available" => $available
 ];
 Validation::check("/add-product", $old);
 
@@ -47,8 +50,8 @@ $db->query("INSERT INTO `products` (`userId`, `name`, `description`, `imageSrc`,
     "name" => $productName,
     "description" => $description,
     "imageSrc" => $imageSrc,
-    "price" => 10, // temp value
-    "available" => 10 // temp value
+    "price" => $price,
+    "available" => $available
 ]);
 
 Functions::redirect("/add-product", attributes: [

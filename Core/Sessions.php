@@ -33,7 +33,7 @@ class Sessions
         unset($_SESSION[$key]);
     }
 
-    public static function login(string $userName,string $email,int $userId): void
+    public static function login(string $userName,string $email,string $userId): void
     {
         static::add("user", [
             "email" => $email,

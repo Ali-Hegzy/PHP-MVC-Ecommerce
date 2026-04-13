@@ -24,11 +24,16 @@
     <?php
 
     use Core\Functions;
+    use Core\Sessions;
 
     require Functions::basePath("view/partials/nav.php");
     ?>
     <h1>User Name : <?= $user["userName"] ?></h1>
     <h1>email : <?= $user["email"] ?></h1>
+
+    <?php if (Sessions::getFlash("delSuccess")): ?>
+        <p>The product deleted successfully</p>
+    <?php endif; ?>
 
     <table>
         <thead>
@@ -38,6 +43,7 @@
             <th>Avaliable</th>
             <th>Sold Items</th>
             <th>Image</th>
+            <th>Choices</th>
         </thead>
         <tbody>
             <?php foreach ($products as $product): ?>
@@ -51,6 +57,13 @@
                         <a href="/product?prod=<?= $product["id"] ?>">
                             <img src="image.php?img=<?= $product["imageSrc"] ?>" width="200" loading="lazy" alt="image">
                         </a>
+                    </td>
+                    <td>
+                        <form action="/delProd" method="post">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <input type="hidden" name="id" value="<?= $product["id"] ?>">
+                            <button type="submit">delete product</button>
+                        </form>
                     </td>
                 </tr>
             <?php endforeach; ?>

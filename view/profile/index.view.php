@@ -64,6 +64,11 @@
                             <input type="hidden" name="id" value="<?= $product["id"] ?>">
                             <button type="submit">delete product</button>
                         </form>
+
+                        <br>
+                        <a href="/product/edit?prod=<?= $product["id"] ?>">
+                            <button>Edit product</button>
+                        </a>
                     </td>
                 </tr>
             <?php endforeach; ?>

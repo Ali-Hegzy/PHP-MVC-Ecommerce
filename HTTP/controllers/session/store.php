@@ -8,7 +8,7 @@ use Core\Sessions;
 $db = Functions::classLink(Database::class);
 
 $email    = $_POST["email"];
-$password = $_POST["password"];
+$password = md5($_POST["password"]);
 $old = ["email" => $email];
 
 if (!$db->isUserExist($email)) {
@@ -17,7 +17,6 @@ if (!$db->isUserExist($email)) {
     Functions::redirect("/login", error: $error, old: $old);
 }
 
-// I will hash the password in the future إن شاء الله  
 $orignalPass = $db->getPassword($email);
 
 if (!($orignalPass === $password)) {

@@ -29,7 +29,7 @@ if ($res) {
 // Save the Data into the database
 $db->query("INSERT INTO `users` (`email`,`password`,`userName`) VALUES (:email,:password,:userName)", [
     "email" => $email,
-    "password" => $password,
+    "password" => md5($password),
     "userName" => $userName
 ]);
 

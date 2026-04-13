@@ -37,7 +37,7 @@ class Validation
         return (bool) isset($_SESSION["user"]);
     }
 
-    public static function number(string $value, string $message, string $messageKey, int $min = 1, float $max = INF): void
+    public static function number(string $value, string $message, string $messageKey, float $min = 0.01, float $max = INF): void
     {
         if ($value < $min || $value > $max) {
             static::$errors[$messageKey] = $message;

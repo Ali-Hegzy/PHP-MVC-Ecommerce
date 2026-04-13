@@ -21,17 +21,17 @@
 
     <form action="store-product" method="POST" enctype="multipart/form-data">
         <label for="name">Name:</label>
-        <input type="text" id="name" name="name" value="<?= Sessions::getOld("name") ?>" />
+        <input type="text" id="name" name="name" value="<?= htmlspecialchars(Sessions::getOld("name")) ?>" />
         <br>
         <p><?= Sessions::getError("name") ?></p>
 
         <label for="description">Description:</label>
-        <textarea id="description" name="description"><?= Sessions::getOld("description") ?></textarea>
+        <textarea id="description" name="description"><?= htmlspecialchars(Sessions::getOld("description")) ?></textarea>
         <br>
         <p><?= Sessions::getError("desc") ?></p>
 
         <label for="price">Price:</label>
-        <input type="number" min="0" id="price" name="price" value="<?= Sessions::getOld("price") ?>" /> $
+        <input type="number" min="0" id="price" name="price" value="<?= htmlspecialchars(Sessions::getOld("price")) ?>" /> $
         <br>
         <p><?= Sessions::getError("price") ?></p>
 

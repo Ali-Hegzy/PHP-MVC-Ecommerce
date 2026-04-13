@@ -18,17 +18,17 @@
         <img src="image.php?img=<?= $product["imageSrc"] ?>" alt="اسم المنتج" class="product-image">
 
         <div class="product-info">
-            <h2 class="product-name">Title: <?= $product["name"] ?></h2>
+            <h2 class="product-name">Title: <?= htmlspecialchars($product["name"]) ?></h2>
 
-            <p class="product-description">Description: <?= $product["description"] ?>
+            <p class="product-description">Description: <?= htmlspecialchars($product["description"]) ?>
             </p>
 
-            <div class="product-price">Price: <?= $product["price"] ?>$</div>
+            <div class="product-price">Price: <?= htmlspecialchars($product["price"]) ?>$</div>
 
             <div class="product-stats">
-                <span class="stock-available">available: <b><?= $product["available"] ?> piece</b></span>
+                <span class="stock-available">available: <b><?= htmlspecialchars($product["available"]) ?> piece</b></span>
                 <br>
-                <span class="units-sold">sold: <b><?= $product["soldItems"] ?> piece</b></span>
+                <span class="units-sold">sold: <b><?= htmlspecialchars($product["soldItems"]) ?> piece</b></span>
             </div>
 
             <!-- <button class="buy-btn">Add to Cart</button> -->

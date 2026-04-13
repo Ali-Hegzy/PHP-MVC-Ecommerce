@@ -48,11 +48,11 @@
         <tbody>
             <?php foreach ($products as $product): ?>
                 <tr>
-                    <td><?= $product["name"] ?></td>
-                    <td><?= $product["description"] ?></td>
-                    <td><?= $product["price"] ?></td>
-                    <td><?= $product["available"] ?></td>
-                    <td><?= $product["soldItems"] ?></td>
+                    <td><?= htmlspecialchars($product["name"]) ?></td>
+                    <td><?= htmlspecialchars($product["description"]) ?></td>
+                    <td><?= htmlspecialchars($product["price"]) ?></td>
+                    <td><?= htmlspecialchars($product["available"]) ?></td>
+                    <td><?= htmlspecialchars($product["soldItems"]) ?></td>
                     <td>
                         <a href="/product?prod=<?= $product["id"] ?>">
                             <img src="image.php?img=<?= $product["imageSrc"] ?>" width="200" loading="lazy" alt="image">

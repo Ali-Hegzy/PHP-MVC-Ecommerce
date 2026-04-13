@@ -19,11 +19,11 @@ use Core\Sessions;
 
     <form action="/signin" method="POST">
         <label for="userName">User Name</label>
-        <input type="userName" name="userName" id="userName" value="<?= Sessions::getOld("userName") ?>" />
+        <input type="userName" name="userName" id="userName" value="<?= htmlspecialchars(Sessions::getOld("userName")) ?>" />
         <p> <?= Sessions::getError("userName") ?> </p>
         <br>
         <label for="email">Email</label>
-        <input type="email" name="email" id="email" value="<?= Sessions::getOld("email") ?>" />
+        <input type="email" name="email" id="email" value="<?= htmlspecialchars(Sessions::getOld("email")) ?>" />
         <p> <?= Sessions::getError("email") ?> </p>
         <br>
         <label for="password">Password</label>

@@ -3,7 +3,7 @@
 use Core\Database;
 use Core\Functions;
 
-$id = $_GET["prod"];
+$id = $_GET["prod"] ?? NULL;
 
 $db = Functions::classLink(Database::class);
 

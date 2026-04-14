@@ -35,6 +35,10 @@
         <p>The product deleted successfully</p>
     <?php endif; ?>
 
+    <?php if (Sessions::getFlash("editSuccess")): ?>
+        <p>The product edited successfully</p>
+    <?php endif; ?>
+
     <table>
         <thead>
             <th>Name</th>

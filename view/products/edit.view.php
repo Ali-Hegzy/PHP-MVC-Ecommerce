@@ -20,6 +20,8 @@
     <?php endif; ?>
 
     <form action="/product/update" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="_method" value="PUT" />
+        <input type="hidden" name="id" value="<?= $product["id"] ?>">
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" value="<?= htmlspecialchars(Sessions::getOld("name") === '' ? $product["name"] : Sessions::getOld("name")) ?>" />
         <br>

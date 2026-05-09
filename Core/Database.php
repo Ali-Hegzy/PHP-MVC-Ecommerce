@@ -51,7 +51,7 @@ class Database
         $result = $this->find();
 
         if (!$result) {
-            throw new Exception(code:404);
+            throw new Exception(code: 404);
         }
 
         return $result;
@@ -76,7 +76,7 @@ class Database
 
     public function isUserExist(string $email): bool
     {
-        $user = $this->query("SELECT * FROM `users` WHERE `email` = :email",[
+        $user = $this->query("SELECT * FROM `users` WHERE `email` = :email", [
             "email" => $email
         ])->find();
 

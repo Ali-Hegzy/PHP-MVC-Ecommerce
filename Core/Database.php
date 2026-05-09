@@ -35,9 +35,9 @@ class Database
         return $this->statment->fetch();
     }
 
-    public function findAll()
+    public function findAll(int $mode = PDO::FETCH_DEFAULT)
     {
-        return $this->statment->fetchAll();
+        return $this->statment->fetchAll($mode);
     }
 
     public function getAll(string $table, int $mode = PDO::FETCH_ASSOC): array

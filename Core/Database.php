@@ -74,7 +74,7 @@ class Database
         return $user;
     }
 
-    public function isUserExist($email): bool
+    public function isUserExist(string $email): bool
     {
         $user = $this->query("SELECT * FROM `users` WHERE `email` = :email",[
             "email" => $email

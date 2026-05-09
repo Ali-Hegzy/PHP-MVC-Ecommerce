@@ -51,8 +51,7 @@ class Database
         $result = $this->find();
 
         if (!$result) {
-            Response::notFound();
-            die();
+            throw new Exception(code:404);
         }
 
         return $result;

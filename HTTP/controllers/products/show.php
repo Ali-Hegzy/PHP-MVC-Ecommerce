@@ -2,15 +2,20 @@
 
 use Core\Database;
 use Core\Functions;
+use Core\Response;
 
 $id = $_GET["prod"] ?? NULL;
 
 $db = Functions::classLink(Database::class);
 
-$product = $db->query("SELECT * FROM `products` WHERE `id` = :id", [
-    "id" => $id
-])->findAbort();
+try {
+    $product = $db->query("SELECT * FROM `products` WHERE `id` = :id", [
+        "id" => $id
+    ])->findAbort();
 
-Functions::view("products/show",[
-    "product" => $product
-]);
+    Functions::view("products/show", [
+        "product" => $product
+    ]);
+} catch (Exception $e) {
+    Response::notFound();
+}

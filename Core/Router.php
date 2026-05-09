@@ -2,9 +2,6 @@
 
 namespace Core;
 
-use Core\Middleware\Middleware;
-use Core\Response;
-
 class Router
 {
     public array $routes = [];

@@ -5,7 +5,7 @@ namespace Core;
 class Sessions
 {
 
-    public static function add(string $key, $value): void
+    public static function add(string $key,mixed $value): void
     {
         $_SESSION[$key] = $value;
     }
@@ -74,7 +74,7 @@ class Sessions
         return $_SESSION["_flash"][$key] ?? "";
     }
 
-    public static function addError($value) : void
+    public static function addError(mixed $value) : void
     {
         $_SESSION["_flash"]["error"] = $value;
     }

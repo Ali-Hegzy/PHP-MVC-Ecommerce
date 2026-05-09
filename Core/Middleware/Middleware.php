@@ -2,7 +2,6 @@
 
 namespace Core\Middleware;
 
-use Core\Logger;
 use Exception;
 
 class Middleware

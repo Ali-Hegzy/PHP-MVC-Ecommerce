@@ -44,7 +44,7 @@ class Validation
         }
     }
 
-    public static function file(array $file, array $types = [], string $message, string $messageKey, int $minSize = 1, float $maxSize = INF): bool
+    public static function file(array $file, array $types, string $message, string $messageKey, int $minSize = 1, float $maxSize = INF): bool
     {
         if ($file["error"]) {
             static::$errors[$messageKey] = $message;
